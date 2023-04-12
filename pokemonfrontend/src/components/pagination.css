@@ -1,0 +1,11 @@
+.react-paginate {
+    margin-bottom: 2rem;
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    list-style-type: none;
+    padding: 0 5rem;
+    color:aliceblue;
+    cursor: pointer;
+  }
