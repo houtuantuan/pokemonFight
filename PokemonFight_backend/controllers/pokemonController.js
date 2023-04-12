@@ -1,7 +1,10 @@
 let jsonData = require('../file.json')
 
 const getAllPokemons = function (req, res, next) {
-  res.send(jsonData)
+  const mappedData = jsonData.map(el => {
+    return { id: el.id, name: el.name.english }
+  })
+  res.send(mappedData)
 }
 
 const getOnePokemon = function (req, res, next) {
@@ -17,7 +20,7 @@ const getInfo = function (req, res, next) {
   const pokemons = jsonData
   const infomation = req.params.info
   const pokemon = pokemons.filter(el => el.id == req.params.id)
-  console.log(pokemon[0]);
-  res.send(pokemon[0][infomation]);
+  console.log(pokemon[0])
+  res.send(pokemon[0][infomation])
 }
 module.exports = { getAllPokemons, getOnePokemon, getInfo }
