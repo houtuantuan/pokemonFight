@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/pokemonFight/static/css/main.4eaf4f54.css",
+    "main.js": "/pokemonFight/static/js/main.69ac3dda.js",
+    "static/media/background.jpg": "/pokemonFight/static/media/background.05d79a9a653de3353ed0.jpg",
+    "index.html": "/pokemonFight/index.html",
+    "main.4eaf4f54.css.map": "/pokemonFight/static/css/main.4eaf4f54.css.map",
+    "main.69ac3dda.js.map": "/pokemonFight/static/js/main.69ac3dda.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.4eaf4f54.css",
+    "static/js/main.69ac3dda.js"
+  ]
+}
