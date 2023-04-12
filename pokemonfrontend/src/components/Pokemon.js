@@ -9,7 +9,7 @@ export default function Pokemon ({ pokemon }) {
         {pokemon &&
           pokemon.map((el, index) => (
             <Link to={`pokemon/${index}`} key={index}>
-              {<li>{el.name.english}</li>}
+              {<li>{el.name}</li>}
             </Link>
           ))}
       </div>
