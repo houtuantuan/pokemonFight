@@ -1,10 +1,15 @@
 let jsonData = require('../file.json')
 
 const getAllPokemons = function (req, res, next) {
-  const mappedData = jsonData.map(el => {
-    return { id: el.id, name: el.name.english }
+  const mappedData = jsonData
+    .slice(req.query.itemOffset, req.query.endOffset)
+    .map(el => {
+      return { id: el.id, name: el.name.english }
+    })
+  res.send({
+    total: jsonData.length,
+    current: mappedData
   })
-  res.send(mappedData)
 }
 
 const getOnePokemon = function (req, res, next) {
