@@ -1,0 +1,15 @@
+﻿################################################################################
+# Diese .gitignore-Datei wurde von Microsoft(R) Visual Studio automatisch erstellt.
+################################################################################
+
+/.vs
+/PokemonFight_backend/.vs
+/pokemonfrontend/.vs/pokemonfrontend/config
+/pokemonfrontend/.vs/pokemonfrontend/v17
+/pokemonfrontend/.vs
+/PokemonFight_backend/.vscode
+/PokemonFight_backend/obj/Debug
+/pokemonfrontend/.vscode
+/pokemonfrontend/obj/Debug
+*.esproj
+*.sln
