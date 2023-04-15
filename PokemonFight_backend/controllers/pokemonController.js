@@ -1,13 +1,23 @@
 let jsonData = require('../file.json')
 
 const getAllPokemons = function (req, res, next) {
-  const mappedData = jsonData
+  let searchedData
+  if (req.query.pokemonName) {
+     searchedData = jsonData.filter(el => {
+      return el.name.english
+        .toLowerCase()
+        .includes(req.query.pokemonName.toLowerCase())
+    })
+  }else {
+    searchedData=jsonData;
+  }
+  const mappedData = searchedData
     .slice(req.query.itemOffset, req.query.endOffset)
     .map(el => {
       return { id: el.id, name: el.name.english }
     })
   res.send({
-    total: jsonData.length,
+    total: searchedData.length,
     current: mappedData
   })
 }
@@ -16,7 +26,7 @@ const getOnePokemon = function (req, res, next) {
   console.log(typeof jsonData)
   const pokemons = jsonData
 
-  const pokemon = pokemons.filter(el => el.id == req.params.id)
+  const pokemon = pokemons.find(el => el.id == req.params.id)
   res.send(pokemon)
   console.log(pokemon)
 }
