@@ -37,7 +37,7 @@ const PokScores = require('../db-schemas/pokemonScore.js');
 
 const getPokScores = async (req, res, next) => {
 	try {
-		const pokScores = await PokScores.find({});
+		const pokScores = await PokScores.find({}); // [filter] - not specified -> returns all documents
 		console.log('============ pokScores', typeof pokScores)
 		console.log('pokScores:', pokScores )
 		res.json(pokScores);
@@ -49,7 +49,7 @@ const getPokScores = async (req, res, next) => {
 const createPokScore = async (req, res) => {
 	try {
 		const { pok_id, pok_name, pok_score } = req.body;			// app.use(express.json())
-		const newPokScore = await Student.create({
+		const newPokScore = await PokScores.create({
 			pok_id,
 			pok_name,
 			pok_score,
@@ -62,17 +62,36 @@ const createPokScore = async (req, res) => {
 
  const updatePokScore = async (req, res) => {
 	try {
-	  const updatedPokScore = await Student.updateMany(
-		 {
-			pok_id: '??id',
-		 },
-		 { $set: { pok_score: '??score' } }
+		// const filter = { pok_id: req.body.id };
+		// const update = { pok_score: req.body.score }; req.params.id
+
+		const filter = { pok_id: req.params.id };
+		const update = { pok_score: req.params.score }; 
+		console.log('update:', req.params.id, req.params.score)
+
+		const updatedPokScore = await PokScores.findOneAndUpdate(filter, update, {
+			new: true
+		});
+	  res.json(`PokScore updated with: ${updatedPokScore}`);
+	} catch (error) {
+	  console.log(error);
+	}
+ };
+
+
+/* 
+ const updatePokScore = async (req, res) => {
+	try {
+		const updatedPokScore = await PokScores.updateMany(
+		{ pok_id: req.body.id },
+		{ $set: { pok_score: req.body.score } }
 	  );
 	  res.json('PokScore updated with ...');
 	} catch (error) {
 	  console.log(error);
 	}
  };
+*/
 
 
 module.exports = { getAllPokemons, getOnePokemon, getInfo, getPokScores, createPokScore, updatePokScore }
