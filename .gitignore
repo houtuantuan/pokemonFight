@@ -13,3 +13,4 @@
 /pokemonfrontend/obj/Debug
 *.esproj
 *.sln
+.env

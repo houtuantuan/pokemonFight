@@ -96,3 +96,33 @@
   .pmCard:hover img:first-child {
     opacity: 0;
   }
+
+  /* score list */
+
+ul {
+	margin: 0;
+	padding: 0;
+}
+
+.pokCardScore {
+	display: flex;
+	align-items:center;
+	justify-content:center;
+	gap: 1rem;
+	/* */
+	list-style: none;
+	width: 100%;
+	max-width: 400px;
+	margin: 0.8rem;
+	border-radius: 1rem;
+	border: 2px solid #002b02;
+	box-shadow: inset 0px 0px 0.6rem 0px rgba(0, 0, 0, 1);
+	background-color: wheat;
+	font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+	font-size: 2rem;
+	color: #003f00;
+} 
+
+.pokCardScore .pokImg {
+	max-width: 100px;
+} 

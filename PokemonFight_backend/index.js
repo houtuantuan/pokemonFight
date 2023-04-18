@@ -1,7 +1,8 @@
 const express = require('express')
 const app = require("./app")
 var cors = require('cors')
-
+require('dotenv').config();
+require('./db/dbclient.js');
 
 const port = 4000
 app.use(cors())
