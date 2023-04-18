@@ -7,8 +7,7 @@ import Searchbar from './Searchbar'
 import {BASE_URL} from '../utils/Constants'
 
 export default function Pokemon () {
-  // Here we use item offsets; we could also use page offsets
-  // following the API or data you're working with.
+ 
   const [itemOffset, setItemOffset] = useState(0)
   const [pokemon, setPokemon] = useState()
   const [searchContent, setSearchContent] = useState(null)
