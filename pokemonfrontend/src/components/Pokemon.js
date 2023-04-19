@@ -5,9 +5,7 @@ import ReactPaginate from 'react-paginate'
 import "./pagination.css"
 
 export default function Pokemon () {
-  const [pokemon, setPokemon] = useState()
-  // Here we use item offsets; we could also use page offsets
-  // following the API or data you're working with.
+
   const [itemOffset, setItemOffset] = useState(0)
   const itemsPerPage = 21
   const fetchData = async offset => {
