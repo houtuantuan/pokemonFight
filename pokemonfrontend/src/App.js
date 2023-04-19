@@ -13,8 +13,8 @@ function App () {
       <div className='App'></div>
       <Routes>
         <Route path='/pokemonFight' element={<Pokemon/>}></Route>
-        <Route path="/pokemonFight/pokemon/:index" element={<SinglePokemon/>}></Route>
-        <Route path="/pokemonFight/pokemon/:index/:info" element={<DetailedPokemon/>}></Route>
+        <Route path="/pokemonFight/pokemon/:id" element={<SinglePokemon/>}></Route>
+        <Route path="/pokemonFight/pokemon/:id/:info" element={<DetailedPokemon/>}></Route>
       </Routes>
     </>
   )
