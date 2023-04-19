@@ -64,10 +64,10 @@ export default function SinglePokemon ({ pokemon }) {
 			{/* {onePokemon && <ul>{rows}</ul>} */}
 		</div>
 		<div className='pmCard' style={{maxWidth: "10rem"}}>
-                  <img
+                  <img alt='onePokemon'
                     src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/${onePokemon.id}.png`}
                   />
-                  <img
+                  <img alt='onePokemon'
                     src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${onePokemon.id}.png`}
                   />
         </div>

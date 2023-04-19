@@ -56,18 +56,40 @@ const createPokScore = async (req, res) => {
 		});
 		res.json(newPokScore);
 	} catch (error) {
-	  console.log(error);
+		console.log(error);
 	}
- };
+};
 
- const updatePokScore = async (req, res) => {
+
+const getUpdatePokScore = async (req, res) => {
 	try {
+		console.log('update:', req.params.id, req.params.score)
+		const filter = { pok_id: req.params.id };
+		const update = { pok_score: req.params.score }; 
+
+		// console.log('update:', req.body.id, req.body.score)
 		// const filter = { pok_id: req.body.id };
 		// const update = { pok_score: req.body.score }; req.params.id
 
-		const filter = { pok_id: req.params.id };
-		const update = { pok_score: req.params.score }; 
-		console.log('update:', req.params.id, req.params.score)
+		const updatedPokScore = await PokScores.findOneAndUpdate(filter, update, {
+			new: true
+		});
+	  res.json(`PokScore updated with: ${updatedPokScore}`);
+	} catch (error) {
+		console.log(error);
+	}
+};
+
+
+const postUpdatePokScore = async (req, res) => {
+	try {
+		console.log('update:', req.body.id, req.body.score)
+		const filter = { pok_id: req.body.id };
+		const update = { pok_score: req.body.score }; req.params.id
+
+		// console.log('update:', req.params.id, req.params.score)
+		// const filter = { pok_id: req.params.id };
+		// const update = { pok_score: req.params.score }; 
 
 		const updatedPokScore = await PokScores.findOneAndUpdate(filter, update, {
 			new: true
@@ -76,24 +98,18 @@ const createPokScore = async (req, res) => {
 	} catch (error) {
 	  console.log(error);
 	}
- };
+};
 
 
-/* 
- const updatePokScore = async (req, res) => {
-	try {
-		const updatedPokScore = await PokScores.updateMany(
-		{ pok_id: req.body.id },
-		{ $set: { pok_score: req.body.score } }
-	  );
-	  res.json('PokScore updated with ...');
-	} catch (error) {
-	  console.log(error);
-	}
- };
-*/
 
-
-module.exports = { getAllPokemons, getOnePokemon, getInfo, getPokScores, createPokScore, updatePokScore }
+module.exports = { 
+	getAllPokemons, 
+	getOnePokemon, 
+	getInfo, 
+	getPokScores, 
+	createPokScore, 
+	getUpdatePokScore,
+	postUpdatePokScore
+ }
 
 
