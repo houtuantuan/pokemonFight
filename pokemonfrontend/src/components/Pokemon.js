@@ -2,33 +2,38 @@ import React from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import ReactPaginate from 'react-paginate'
-import "./pagination.css"
+import './pagination.css'
+import Searchbar from './Searchbar'
+import {BASE_URL} from '../utils/Constants'
 
 export default function Pokemon () {
-
+  // Here we use item offsets; we could also use page offsets
+  // following the API or data you're working with.
   const [itemOffset, setItemOffset] = useState(0)
+  const [pokemon, setPokemon] = useState()
+  const [searchContent, setSearchContent] = useState(null)
   const itemsPerPage = 21
   const fetchData = async offset => {
     try {
-      const getData = await fetch(
-        `http://localhost:4000/pokemon?itemOffset=${offset}&endOffset=${
-          offset + itemsPerPage
-        }`
-      )
+      const baseUrl = `${BASE_URL}?itemOffset=${offset}&endOffset=${offset + itemsPerPage}`
+      const url = searchContent ? `${baseUrl}&pokemonName=${searchContent}` : baseUrl
+      const getData = await fetch(url)
       if (!getData)
         throw new Error(`Request failes with a status of ${getData.status}`)
       const parseData = await getData.json()
       setPokemon(parseData)
+      // console.log(parseData.current)
     } catch (error) {
       console.log(error.message)
-    }
-  }
+    }}
 
   useEffect(() => {
     fetchData(itemOffset)
   }, [])
 
-  
+  useEffect(() => {
+    fetchData(itemOffset)
+  }, [searchContent])
 
   // Simulate fetching items from another resources.
   // (This could be items from props; or items loaded in a local state
@@ -36,7 +41,6 @@ export default function Pokemon () {
   const endOffset = itemOffset + itemsPerPage
   console.log(`Loading items from ${itemOffset} to ${endOffset}`)
   const pageCount = pokemon ? Math.ceil(pokemon.total / itemsPerPage) : 0
-
   // Invoke when user click to request another page.
   const handlePageClick = event => {
     const newOffset = (event.selected * itemsPerPage) % pokemon.total
@@ -46,10 +50,13 @@ export default function Pokemon () {
     fetchData(newOffset)
     setItemOffset(newOffset)
   }
-
   return (
     <div className='maxScreen'>
       <div className='maxDesign'>
+        <Searchbar
+          setItemOffset={setItemOffset}
+          setSearchContent={setSearchContent}
+        />
         <div className='pmList'>
           {pokemon &&
             pokemon.current.map(el => (
@@ -67,7 +74,7 @@ export default function Pokemon () {
             ))}
         </div>
         <ReactPaginate
-        className="react-paginate"
+          className='react-paginate'
           breakLabel='...'
           nextLabel='next >'
           onPageChange={handlePageClick}
