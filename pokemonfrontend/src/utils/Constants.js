@@ -1,3 +1,3 @@
-const BASE_URL = 'http://localhost:4000/pokemon'
+const BASE_URL = 'http://localhost:5000/pokemon'
 
-module.exports = {BASE_URL}
+module.exports = { BASE_URL }

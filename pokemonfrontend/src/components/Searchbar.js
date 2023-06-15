@@ -38,7 +38,7 @@ export default function Searchbar ({ setItemOffset, setSearchContent }) {
       >
         <Typography
           variant='h4'
-          Wrap
+          
           component='div'
           sx={{
             flexGrow: 1,
